@@ -48,8 +48,6 @@ def on_message(ws, message):
         bid_quantity = order_data['remaining']
         new_bid = Bid(bid_price, bid_quantity)
 
-
-
         # Append order to bid side of orderbook.
         global bids
         if len(bids) == 0:
@@ -83,9 +81,6 @@ def on_message(ws, message):
     print(bids[0].get_Bid_Price() + ' ' + bids[0].get_Bid_Quantity() + ' - ' + asks[0].get_Ask_Price() + ' ' + asks[0].get_Ask_Quantity())
 
     
-    
-    
-
 socket = "wss://api.gemini.com/v1/marketdata/btcusd?top_of_book=false&bids=true&offers=true"
 ws = websocket.WebSocketApp(socket, on_open=on_open, on_message=on_message)
 ws.run_forever(sslopt={"cert_reqs": ssl.CERT_NONE})
